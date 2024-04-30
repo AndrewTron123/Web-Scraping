@@ -22,20 +22,29 @@ soup = BeautifulSoup(webpage, 'html.parser')
 
 print(soup.title.text)
 
+
+
+
+
 stock_data = soup.findAll('div', attrs={'class':'table-cell'})
 
-print(len(stock_data))
-print(stock_data[1].text)
-print(stock_data[12].text)
+
 counter = 1
 
 for x in range(5):
     name = stock_data[counter].text
     change = float(stock_data[counter+2].text.strip('+').strip('%'))
     last_price = float(stock_data[counter+3].text)
-    prev_price = round(last_price / (1+(change/100),2))
+    prev_price = round(last_price / (1+(change/100)),2)
+    
+    print()
+    print(f'Comapny name: {name}')
+    print(f'change in stock price: {change}')
+    print(f'current price: {last_price}')
+    print(f'price before chnage: {prev_price}')
+    print()
 
-
+    counter +=11
 #SOME USEFUL FUNCTIONS IN BEAUTIFULSOUP
 #-----------------------------------------------#
 # find(tag, attributes, recursive, text, keywords)
